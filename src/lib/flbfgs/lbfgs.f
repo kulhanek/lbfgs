@@ -402,13 +402,13 @@ C     END OF MAIN ITERATION LOOP. ERROR EXITS.
 C     ------------------------------------------------------------
 C
  190  IFLAG=-1
-      IF(LP.GT.0) WRITE(LP,200) INFO
+      IF((LP.GT.0).AND.(IPRINT(1).NE.0)) WRITE(LP,200) INFO
       RETURN
  195  IFLAG=-2
-      IF(LP.GT.0) WRITE(LP,235) I
+      IF((LP.GT.0).AND.(IPRINT(1).NE.0)) WRITE(LP,235) I
       RETURN
  196  IFLAG= -3
-      IF(LP.GT.0) WRITE(LP,240)
+      IF((LP.GT.0).AND.(IPRINT(1).NE.0)) WRITE(LP,240)
 C
 C     FORMATS
 C     -------
