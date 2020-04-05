@@ -402,7 +402,8 @@ C     END OF MAIN ITERATION LOOP. ERROR EXITS.
 C     ------------------------------------------------------------
 C
  190  IFLAG=-1
-      IF((LP.GT.0).AND.(IPRINT(1).NE.0)) WRITE(LP,200) INFO
+C KULHANEK
+C      IF((LP.GT.0).AND.(IPRINT(1).NE.0)) WRITE(LP,200) INFO
       RETURN
  195  IFLAG=-2
       IF((LP.GT.0).AND.(IPRINT(1).NE.0)) WRITE(LP,235) I
