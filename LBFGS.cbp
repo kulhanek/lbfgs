@@ -7,8 +7,8 @@
 		<Option compiler="gfortran" />
 		<Build>
 			<Target title="Release">
-				<Option output="bin/Release/LBFGS" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+				<Option output="LBFGS" prefix_auto="1" extension_auto="1" />
+				<Option object_output="/scratch/kulhanek/Development/linux/thirdparty/lbfgs/1.0/.objs" />
 				<Option type="1" />
 				<Option compiler="gfortran" />
 				<Compiler>
@@ -17,11 +17,25 @@
 				<Linker>
 					<Add option="-s" />
 				</Linker>
+				<ExtraCommands>
+					<Add before="cmake ." />
+					<Add before="make" />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="CMakeLists.txt" />
+		<Unit filename="src/lib/flbfgs/CMakeLists.txt" />
+		<Unit filename="src/lib/flbfgs/lbfgs.f">
+			<Option weight="0" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="src/lib/flbfgs/lbfgs.f90">
+			<Option weight="0" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Extensions>
 			<envvars />
 			<code_completion />

@@ -64,7 +64,7 @@ SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
 
 # when building, don't use the install RPATH already
 # (but later on when installing)
-SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 
 # the RPATH to be used when installing
 SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
@@ -82,7 +82,7 @@ get_filename_component(FCOMP_NAME ${CMAKE_Fortran_COMPILER} NAME_WE)
 
 # default compiler setups - gfortran
 SET(CMAKE_Fortran_FLAGS_RELEASE "-O3 -march=core-avx2 -fopenmp")
-SET(CMAKE_Fortran_FLAGS_DEBUG   "-g -O0")
+SET(CMAKE_Fortran_FLAGS_DEBUG   "-g -fopenmp -Wuninitialized")
 
 # ifort
 IF(FCOMP_NAME STREQUAL ifort)
