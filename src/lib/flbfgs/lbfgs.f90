@@ -792,7 +792,8 @@ CONTAINS
          CTX%DGINIT = CTX%DGINIT + G(J)*S(J)
    10    CONTINUE
       IF (CTX%DGINIT .GE. ZERO) then
-         write(LP,15)
+! kulhanek - ignore warning
+!         write(LP,15)
    15    FORMAT(/'  THE SEARCH DIRECTION IS NOT A DESCENT DIRECTION')
          RETURN
          ENDIF
