@@ -82,7 +82,7 @@ SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE)
 get_filename_component(FCOMP_NAME ${CMAKE_Fortran_COMPILER} NAME_WE)
 
 # default compiler setups - gfortran
-SET(CMAKE_Fortran_FLAGS_RELEASE "-O3 -march=core-avx2 -fopenmp")
+SET(CMAKE_Fortran_FLAGS_RELEASE "-O3 -fopenmp")
 SET(CMAKE_Fortran_FLAGS_DEBUG   "-g -fopenmp -Wuninitialized")
 
 # ifort
