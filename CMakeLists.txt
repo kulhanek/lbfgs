@@ -60,48 +60,52 @@ LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/lib)
 # rpaths -----------------------------------------------------------------------
 # ==============================================================================
 
-# use, i.e. don't skip the full RPATH for the build tree
-SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
+IF(NOT DEFINED COMPOSITE_PROJECT)
+    # use, i.e. don't skip the full RPATH for the build tree
+    SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
 
-# when building, don't use the install RPATH already
-# (but later on when installing)
-SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
+    # when building, don't use the install RPATH already
+    # (but later on when installing)
+    SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 
-# the RPATH to be used when installing
-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+    # the RPATH to be used when installing
+    SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 
-# add the automatically determined parts of the RPATH
-# which point to directories outside the build tree to the install RPATH
-SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE)
+    # add the automatically determined parts of the RPATH
+    # which point to directories outside the build tree to the install RPATH
+    SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE)
+ENDIF(NOT DEFINED COMPOSITE_PROJECT)
 
 # ==============================================================================
 # compiler setups --------------------------------------------------------------
 # ==============================================================================
 
-# get the name of fortran compiler
-get_filename_component(FCOMP_NAME ${CMAKE_Fortran_COMPILER} NAME_WE)
+IF(NOT DEFINED COMPOSITE_PROJECT)
+    # get the name of fortran compiler
+    get_filename_component(FCOMP_NAME ${CMAKE_Fortran_COMPILER} NAME_WE)
 
-# default compiler setups - gfortran
-SET(CMAKE_Fortran_FLAGS_RELEASE "-O3 -fopenmp")
-SET(CMAKE_Fortran_FLAGS_DEBUG   "-g -fopenmp -Wuninitialized")
+    # default compiler setups - gfortran
+    SET(CMAKE_Fortran_FLAGS_RELEASE "-O3 -fopenmp")
+    SET(CMAKE_Fortran_FLAGS_DEBUG   "-g -fopenmp -Wuninitialized")
 
-# ifort
-IF(FCOMP_NAME STREQUAL ifort)
-    SET(CMAKE_Fortran_FLAGS_RELEASE "-O2")
-    SET(CMAKE_Fortran_FLAGS_DEBUG   "-g -traceback -check all -O0")
-ENDIF(FCOMP_NAME STREQUAL ifort)
+    # ifort
+    IF(FCOMP_NAME STREQUAL ifort)
+        SET(CMAKE_Fortran_FLAGS_RELEASE "-O2")
+        SET(CMAKE_Fortran_FLAGS_DEBUG   "-g -traceback -check all -O0")
+    ENDIF(FCOMP_NAME STREQUAL ifort)
 
-# fix the problem with dynamic libraries and xlf compiler on SP5
-IF(FCOMP_NAME STREQUAL xlf)
-    SET(CMAKE_Fortran_FLAGS_RELEASE "-O2 -qsuppress=1501-510:cmpmsg")
-    SET(CMAKE_Fortran_FLAGS_DEBUG   "-g")
-    IF(LIBS_SHARED)
-        MESSAGE(FATAL_ERROR "LIBS_SHARED is ON, which is not supported with xlf compiler!")
-    ENDIF(LIBS_SHARED)
-ENDIF(FCOMP_NAME STREQUAL xlf)
+    # fix the problem with dynamic libraries and xlf compiler on SP5
+    IF(FCOMP_NAME STREQUAL xlf)
+        SET(CMAKE_Fortran_FLAGS_RELEASE "-O2 -qsuppress=1501-510:cmpmsg")
+        SET(CMAKE_Fortran_FLAGS_DEBUG   "-g")
+        IF(LIBS_SHARED)
+            MESSAGE(FATAL_ERROR "LIBS_SHARED is ON, which is not supported with xlf compiler!")
+        ENDIF(LIBS_SHARED)
+    ENDIF(FCOMP_NAME STREQUAL xlf)
 
-SET(CMAKE_BUILD_TYPE Release)
-#SET(CMAKE_BUILD_TYPE Debug)
+    SET(CMAKE_BUILD_TYPE Release)
+    #SET(CMAKE_BUILD_TYPE Debug)
+ENDIF(NOT DEFINED COMPOSITE_PROJECT)
 
 # ==============================================================================
 # project subdirectories  ------------------------------------------------------
